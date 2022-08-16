@@ -21,7 +21,8 @@ const IncomeCheck = ({ style }: any) => {
     axios.get("http://localhost:8080/data").then((res) => {
       let data = res.data;
       setData(data);
-      console.log(data);
+      console.log(data[0].min);
+      console.log(data[0].max);
     });
   }, []);
 
