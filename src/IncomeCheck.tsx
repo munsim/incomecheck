@@ -13,7 +13,18 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { useMediaQuery } from "react-responsive";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
+import axios from "axios";
+import * as xlsx from "xlsx";
 const IncomeCheck = ({ style }: any) => {
+  const [data, setData] = useState<any>([]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/data").then((res) => {
+      let data = res.data;
+      setData(data);
+      console.log(data);
+    });
+  }, []);
+
   let n = new Date();
   let y = n.getFullYear();
   let m = n.getMonth() + 1;
