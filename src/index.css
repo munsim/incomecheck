@@ -1,0 +1,174 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("./img/bmwbg.jpg");
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.main {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+}
+.main2 {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.menu {
+  width: 350px;
+  height: 290px;
+  background: rgb(200, 200, 200, 0.7);
+  text-align: center;
+  transition: 1s;
+  position: absolute;
+  border-radius: 5px;
+}
+
+.menu2 {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.container2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.buttons {
+  margin-top: 5px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column !important;
+  width: 100%;
+  align-items: center;
+}
+
+.sec1,
+.sec2,
+.sec3,
+.sec4 {
+  width: 100%;
+  height: 100%;
+  border: 1px solid gray;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.sec1 {
+  background-image: url("./img/bg1light.jpg");
+}
+.sec2 {
+  background-image: url("./img/bg1light.jpg");
+}
+.sec3 {
+  background-image: url("./img/bg1light.jpg");
+}
+
+.sec4 {
+  background-image: url("./img/bg1light.jpg");
+}
+
+.black {
+  color: black !important;
+
+  font-weight: bold !important;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.picker {
+  width: 120px;
+  height: 35px;
+  font-size: large;
+}
+
+.income {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 80%;
+}
+.incomecell {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  width: 100%;
+  margin-bottom: 150px;
+}
+.income1 {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+.income2 {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+
+  width: 50%;
+}
+
+.income2cell {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+
+  width: 100%;
+}
+.income1cell {
+  width: 100%;
+}
+
+.logobmw {
+  height: 50px;
+  width: 50px;
+}
+
+.logomini {
+  height: 50px;
+  width: 120px;
+}
+
+.logos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 15px;
+}
