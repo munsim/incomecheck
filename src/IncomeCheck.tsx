@@ -1221,7 +1221,7 @@ const IncomeCheck = ({ style }: any) => {
                         htmlFor="outlined-adornment-amount"
                         sx={inputstyle}
                       >
-                        Other
+                        Other Allowance
                       </InputLabel>
                       <OutlinedInput
                         id="outlined-adornment-amount"
