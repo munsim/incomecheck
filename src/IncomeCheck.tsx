@@ -183,7 +183,7 @@ const IncomeCheck = ({ style }: any) => {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8080/data").then((res) => {
+    axios.get("https://incomecheck.herokuapp.com/data").then((res) => {
       let data = res.data;
       setData(data);
 
@@ -214,7 +214,7 @@ const IncomeCheck = ({ style }: any) => {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/data2").then((res) => {
+    axios.get("https://incomecheck.herokuapp.com/data2").then((res) => {
       let data2 = res.data;
       setData2(data2);
       sethdebt({
