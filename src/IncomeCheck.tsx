@@ -17,12 +17,266 @@ import axios from "axios";
 import * as xlsx from "xlsx";
 const IncomeCheck = ({ style }: any) => {
   const [data, setData] = useState<any>([]);
+  const [data2, setData2] = useState<any>([]);
+  interface State {
+    range0min: number;
+    range0max: number;
+    range0rat: number;
+    range0ext: number;
+    range1min: number;
+    range1max: number;
+    range1rat: number;
+    range1ext: number;
+    range2min: number;
+    range2max: number;
+    range2rat: number;
+    range2ext: number;
+    range3min: number;
+    range3max: number;
+    range3rat: number;
+    range3ext: number;
+    range4min: number;
+    range4max: number;
+    range4rat: number;
+    range4ext: number;
+  }
+  const [taxbrackets, setTaxbrackets] = useState<State>({
+    range0min: 0,
+    range0max: 0,
+    range0rat: 0,
+    range0ext: 0,
+    range1min: 0,
+    range1max: 0,
+    range1rat: 0,
+    range1ext: 0,
+    range2min: 0,
+    range2max: 0,
+    range2rat: 0,
+    range2ext: 0,
+    range3min: 0,
+    range3max: 0,
+    range3rat: 0,
+    range3ext: 0,
+    range4min: 0,
+    range4max: 0,
+    range4rat: 0,
+    range4ext: 0,
+  });
+
+  interface State2 {
+    range00min: number;
+    range00max: number;
+    range00rat: number;
+    range01min: number;
+    range01max: number;
+    range01rat: number;
+    range02min: number;
+    range02max: number;
+    range02rat: number;
+    range03min: number;
+    range03max: number;
+    range03rat: number;
+    range04min: number;
+    range04max: number;
+    range04rat: number;
+    range05min: number;
+    range05max: number;
+    range05rat: number;
+    range06min: number;
+    range06max: number;
+    range06rat: number;
+    range07min: number;
+    range07max: number;
+    range07rat: number;
+    range08min: number;
+    range08max: number;
+    range08rat: number;
+    range09min: number;
+    range09max: number;
+    range09rat: number;
+    range10min: number;
+    range10max: number;
+    range10rat: number;
+    range11min: number;
+    range11max: number;
+    range11rat: number;
+    range12min: number;
+    range12max: number;
+    range12rat: number;
+    range13min: number;
+    range13max: number;
+    range13rat: number;
+    range14min: number;
+    range14max: number;
+    range14rat: number;
+    range15min: number;
+    range15max: number;
+    range15rat: number;
+    range16min: number;
+    range16max: number;
+    range16rat: number;
+    range17min: number;
+    range17max: number;
+    range17rat: number;
+    range18min: number;
+    range18max: number;
+    range18rat: number;
+  }
+  const [hdebt, sethdebt] = useState<State2>({
+    range00min: 0,
+    range00max: 0,
+    range00rat: 0,
+    range01min: 0,
+    range01max: 0,
+    range01rat: 0,
+    range02min: 0,
+    range02max: 0,
+    range02rat: 0,
+    range03min: 0,
+    range03max: 0,
+    range03rat: 0,
+    range04min: 0,
+    range04max: 0,
+    range04rat: 0,
+    range05min: 0,
+    range05max: 0,
+    range05rat: 0,
+    range06min: 0,
+    range06max: 0,
+    range06rat: 0,
+    range07min: 0,
+    range07max: 0,
+    range07rat: 0,
+    range08min: 0,
+    range08max: 0,
+    range08rat: 0,
+    range09min: 0,
+    range09max: 0,
+    range09rat: 0,
+    range10min: 0,
+    range10max: 0,
+    range10rat: 0,
+    range11min: 0,
+    range11max: 0,
+    range11rat: 0,
+    range12min: 0,
+    range12max: 0,
+    range12rat: 0,
+    range13min: 0,
+    range13max: 0,
+    range13rat: 0,
+    range14min: 0,
+    range14max: 0,
+    range14rat: 0,
+    range15min: 0,
+    range15max: 0,
+    range15rat: 0,
+    range16min: 0,
+    range16max: 0,
+    range16rat: 0,
+    range17min: 0,
+    range17max: 0,
+    range17rat: 0,
+    range18min: 0,
+    range18max: 0,
+    range18rat: 0,
+  });
+
   useEffect(() => {
     axios.get("http://localhost:8080/data").then((res) => {
       let data = res.data;
       setData(data);
-      console.log(data[0].min);
-      console.log(data[0].max);
+
+      setTaxbrackets({
+        ...taxbrackets,
+        range0min: data[0].min,
+        range0max: data[0].max,
+        range0rat: data[0].rat,
+        range0ext: data[0].ext,
+        range1min: data[1].min,
+        range1max: data[1].max,
+        range1rat: data[1].rat,
+        range1ext: data[1].ext,
+        range2min: data[2].min,
+        range2max: data[2].max,
+        range2rat: data[2].rat,
+        range2ext: data[2].ext,
+        range3min: data[3].min,
+        range3max: data[3].max,
+        range3rat: data[3].rat,
+        range3ext: data[3].ext,
+        range4min: data[4].min,
+        range4max: data[4].max,
+        range4rat: data[4].rat,
+        range4ext: data[4].ext,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/data2").then((res) => {
+      let data2 = res.data;
+      setData2(data2);
+      sethdebt({
+        ...hdebt,
+        range00min: data2[0].min,
+        range00max: data2[0].max,
+        range00rat: data2[0].rat,
+        range01min: data2[1].min,
+        range01max: data2[1].max,
+        range01rat: data2[1].rat,
+        range02min: data2[2].min,
+        range02max: data2[2].max,
+        range02rat: data2[2].rat,
+        range03min: data2[3].min,
+        range03max: data2[3].max,
+        range03rat: data2[3].rat,
+        range04min: data2[4].min,
+        range04max: data2[4].max,
+        range04rat: data2[4].rat,
+        range05min: data2[5].min,
+        range05max: data2[5].max,
+        range05rat: data2[5].rat,
+        range06min: data2[6].min,
+        range06max: data2[6].max,
+        range06rat: data2[6].rat,
+        range07min: data2[7].min,
+        range07max: data2[7].max,
+        range07rat: data2[7].rat,
+        range08min: data2[8].min,
+        range08max: data2[8].max,
+        range08rat: data2[8].rat,
+        range09min: data2[9].min,
+        range09max: data2[9].max,
+        range09rat: data2[9].rat,
+        range10min: data2[10].min,
+        range10max: data2[10].max,
+        range10rat: data2[10].rat,
+        range11min: data2[11].min,
+        range11max: data2[11].max,
+        range11rat: data2[11].rat,
+        range12min: data2[12].min,
+        range12max: data2[12].max,
+        range12rat: data2[12].rat,
+        range13min: data2[13].min,
+        range13max: data2[13].max,
+        range13rat: data2[13].rat,
+        range14min: data2[14].min,
+        range14max: data2[14].max,
+        range14rat: data2[14].rat,
+        range15min: data2[15].min,
+        range15max: data2[15].max,
+        range15rat: data2[15].rat,
+        range16min: data2[16].min,
+        range16max: data2[16].max,
+        range16rat: data2[16].rat,
+        range17min: data2[17].min,
+        range17max: data2[17].max,
+        range17rat: data2[17].rat,
+        range18min: data2[18].min,
+        range18max: data2[18].max,
+        range18rat: data2[18].rat,
+      });
     });
   }, []);
 
@@ -147,61 +401,134 @@ const IncomeCheck = ({ style }: any) => {
   }, [startDate1, endDate, ytd]);
 
   useEffect(() => {
-    if (grossincome * 1 < 47014) {
+    if (grossincome * 1 < hdebt.range00max) {
       sethelpdebtpaymentSE(0);
-    } else if (grossincome * 1 >= 47014 && grossincome * 1 <= 54282) {
-      sethelpdebtpaymentSE(0.01 * grossincome);
-    } else if (grossincome * 1 >= 54283 && grossincome * 1 <= 57538) {
-      sethelpdebtpaymentSE(0.02 * grossincome);
-    } else if (grossincome * 1 >= 57539 && grossincome * 1 <= 60991) {
-      sethelpdebtpaymentSE(0.025 * grossincome);
-    } else if (grossincome * 1 >= 60992 && grossincome * 1 <= 64651) {
-      sethelpdebtpaymentSE(0.03 * grossincome);
-    } else if (grossincome * 1 >= 64652 && grossincome * 1 <= 68529) {
-      sethelpdebtpaymentSE(0.035 * grossincome);
-    } else if (grossincome * 1 >= 68530 && grossincome * 1 <= 72641) {
-      sethelpdebtpaymentSE(0.04 * grossincome);
-    } else if (grossincome * 1 >= 72642 && grossincome * 1 <= 77001) {
-      sethelpdebtpaymentSE(0.045 * grossincome);
-    } else if (grossincome * 1 >= 77002 && grossincome * 1 <= 81620) {
-      sethelpdebtpaymentSE(0.05 * grossincome);
-    } else if (grossincome * 1 >= 81621 && grossincome * 1 <= 86518) {
-      sethelpdebtpaymentSE(0.055 * grossincome);
-    } else if (grossincome * 1 >= 86519 && grossincome * 1 <= 91709) {
-      sethelpdebtpaymentSE(0.06 * grossincome);
-    } else if (grossincome * 1 >= 91710 && grossincome * 1 <= 97212) {
-      sethelpdebtpaymentSE(0.065 * grossincome);
-    } else if (grossincome * 1 >= 97213 && grossincome * 1 <= 103045) {
-      sethelpdebtpaymentSE(0.07 * grossincome);
-    } else if (grossincome * 1 >= 103046 && grossincome * 1 <= 109227) {
-      sethelpdebtpaymentSE(0.075 * grossincome);
-    } else if (grossincome * 1 >= 109228 && grossincome * 1 <= 115781) {
-      sethelpdebtpaymentSE(0.08 * grossincome);
-    } else if (grossincome * 1 >= 115782 && grossincome * 1 <= 122728) {
-      sethelpdebtpaymentSE(0.085 * grossincome);
-    } else if (grossincome * 1 >= 122729 && grossincome * 1 <= 130092) {
-      sethelpdebtpaymentSE(0.09 * grossincome);
-    } else if (grossincome * 1 >= 130093 && grossincome * 1 <= 137897) {
-      sethelpdebtpaymentSE(0.095 * grossincome);
-    } else if (grossincome * 1 >= 137898) {
-      sethelpdebtpaymentSE(0.1 * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range01min &&
+      grossincome * 1 <= hdebt.range01max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range01rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range02min &&
+      grossincome * 1 <= hdebt.range02max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range02rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range03min &&
+      grossincome * 1 <= hdebt.range03max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range03rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range04min &&
+      grossincome * 1 <= hdebt.range04max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range04rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range05min &&
+      grossincome * 1 <= hdebt.range05max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range05rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range06min &&
+      grossincome * 1 <= hdebt.range06max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range06rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range07max &&
+      grossincome * 1 <= hdebt.range07max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range07rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range08min &&
+      grossincome * 1 <= hdebt.range08max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range08rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range09min &&
+      grossincome * 1 <= hdebt.range09max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range09rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range10min &&
+      grossincome * 1 <= hdebt.range10max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range10rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range11min &&
+      grossincome * 1 <= hdebt.range11max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range11rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range12min &&
+      grossincome * 1 <= hdebt.range12max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range12rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range13min &&
+      grossincome * 1 <= hdebt.range13max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range13rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range15min &&
+      grossincome * 1 <= hdebt.range14max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range14rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range15min &&
+      grossincome * 1 <= hdebt.range15max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range15rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range16min &&
+      grossincome * 1 <= hdebt.range16max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range16rat * grossincome);
+    } else if (
+      grossincome * 1 >= hdebt.range17min &&
+      grossincome * 1 <= hdebt.range17max
+    ) {
+      sethelpdebtpaymentSE(hdebt.range17rat * grossincome);
+    } else if (grossincome * 1 >= hdebt.range18min) {
+      sethelpdebtpaymentSE(hdebt.range18rat * grossincome);
     }
 
-    if (grossincome <= 18200) {
+    if (grossincome <= taxbrackets.range0max) {
       setnpmfromgrossincome(grossincome / 12);
-    } else if (18201 < grossincome && grossincome <= 45000) {
-      setnpmfromgrossincome((grossincome - 0.19 * (grossincome - 18200)) / 12);
-    } else if (45001 < grossincome && grossincome <= 120000) {
+    } else if (
+      taxbrackets.range1min < grossincome &&
+      grossincome <= taxbrackets.range1max
+    ) {
       setnpmfromgrossincome(
-        (grossincome - 5092 + 0.325 * (grossincome - 45000)) / 12
+        (grossincome -
+          taxbrackets.range1rat * (grossincome - taxbrackets.range0max)) /
+          12
       );
-    } else if (120001 < grossincome && grossincome <= 180000) {
+    } else if (
+      taxbrackets.range2min < grossincome &&
+      grossincome <= taxbrackets.range2max
+    ) {
       setnpmfromgrossincome(
-        (grossincome - 29467 + 0.37 * (grossincome! - 120000)) / 12
+        (grossincome -
+          taxbrackets.range2ext +
+          taxbrackets.range2rat * (grossincome - taxbrackets.range1max)) /
+          12
       );
-    } else if (grossincome > 180001) {
+    } else if (
+      taxbrackets.range3min < grossincome &&
+      grossincome <= taxbrackets.range3max
+    ) {
       setnpmfromgrossincome(
-        (grossincome - 51667 + 0.45 * (grossincome - 180000)) / 12
+        (grossincome -
+          taxbrackets.range3ext +
+          taxbrackets.range3rat * (grossincome! - taxbrackets.range2max)) /
+          12
+      );
+    } else if (grossincome > taxbrackets.range4min) {
+      setnpmfromgrossincome(
+        (grossincome -
+          taxbrackets.range4ext +
+          taxbrackets.range4rat * (grossincome - taxbrackets.range3max)) /
+          12
       );
     }
   }, [grossincome]);
@@ -255,7 +582,7 @@ const IncomeCheck = ({ style }: any) => {
   ]);
 
   useEffect(() => {
-    if (Number(payfreq) == 1) {
+    if (Number(payfreq) === 1) {
       if (1.1 * finalincome! * 12 >= 250000) {
         if (1.1 * finalincome! * 12 - 250000 <= 27500) {
           setdivision((1.1 * finalincome! * 12 - 250000) * 0.15);
@@ -322,7 +649,7 @@ const IncomeCheck = ({ style }: any) => {
         setlito(325 - 0.015 * (finalincome! * 12 - 45000));
       } else if (66667 < finalincome! * 12) {
         setlito(0);
-      } else if (finalincome! * 12 == 0) {
+      } else if (finalincome! * 12 === 0) {
         setlito(0);
       }
 
@@ -340,7 +667,7 @@ const IncomeCheck = ({ style }: any) => {
         setlmito(1500 - 0.03 * (finalincome! * 12 - 90000));
       } else if (126001 < finalincome! * 12) {
         setlmito(0);
-      } else if (finalincome! * 12 == 0) {
+      } else if (finalincome! * 12 === 0) {
         setlmito(0);
       }
 
@@ -363,7 +690,7 @@ const IncomeCheck = ({ style }: any) => {
       } else if (finalincome! * 12 > 29032) {
         setlevy(0.02 * finalincome! * 12);
       }
-    } else if (Number(payfreq) == 2) {
+    } else if (Number(payfreq) === 2) {
       if (1.1 * finalincome! * 26 >= 250000) {
         if (1.1 * finalincome! * 26 - 250000 <= 27500) {
           setdivision((1.1 * finalincome! * 26 - 250000) * 0.15);
@@ -432,7 +759,7 @@ const IncomeCheck = ({ style }: any) => {
         setlito(325 - 0.015 * (finalincome! * 26 - 45000));
       } else if (66667 < finalincome! * 26) {
         setlito(0);
-      } else if (finalincome! * 26 == 0) {
+      } else if (finalincome! * 26 === 0) {
         setlito(0);
       }
 
@@ -450,7 +777,7 @@ const IncomeCheck = ({ style }: any) => {
         setlmito(1500 - 0.03 * (finalincome! * 26 - 90000));
       } else if (126001 < finalincome! * 26) {
         setlmito(0);
-      } else if (finalincome! * 26 == 0) {
+      } else if (finalincome! * 26 === 0) {
         setlmito(0);
       }
 
@@ -473,7 +800,7 @@ const IncomeCheck = ({ style }: any) => {
       } else if (finalincome! * 26 > 29032) {
         setlevy(0.02 * finalincome! * 26);
       }
-    } else if (Number(payfreq) == 3) {
+    } else if (Number(payfreq) === 3) {
       if (1.1 * finalincome! * 52 >= 250000) {
         if (1.1 * finalincome! * 52 - 250000 <= 27500) {
           setdivision((1.1 * finalincome! * 52 - 250000) * 0.15);
@@ -542,7 +869,7 @@ const IncomeCheck = ({ style }: any) => {
         setlito(325 - 0.015 * (finalincome! * 52 - 45000));
       } else if (66667 < finalincome! * 52) {
         setlito(0);
-      } else if (finalincome! * 52 == 0) {
+      } else if (finalincome! * 52 === 0) {
         setlito(0);
       }
 
@@ -560,7 +887,7 @@ const IncomeCheck = ({ style }: any) => {
         setlmito(1500 - 0.03 * (finalincome! * 52 - 90000));
       } else if (126001 < finalincome! * 52) {
         setlmito(0);
-      } else if (finalincome! * 52 == 0) {
+      } else if (finalincome! * 52 === 0) {
         setlmito(0);
       }
 
@@ -601,7 +928,7 @@ const IncomeCheck = ({ style }: any) => {
           (paycycle * 26) / 12 -
           Number(rounder)
       );
-    } else if (Number(payfreq) == 3) {
+    } else if (Number(payfreq) === 3) {
       setadjnetincome(
         (finalincome! * 52 -
           (tax - lito - lmito <= 0
