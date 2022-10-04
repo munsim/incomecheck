@@ -17,7 +17,7 @@ import axios from "axios";
 import * as xlsx from "xlsx";
 const IncomeCheck = ({ style }: any) => {
   const [data, setData] = useState<any>([]);
-  const [data2, setData2] = useState<any>([]);
+
   interface State {
     range0min: number;
     range0max: number;
@@ -182,100 +182,209 @@ const IncomeCheck = ({ style }: any) => {
     range18rat: 0,
   });
 
+  interface State3 {
+    div293limit: number;
+    div293cap: number;
+    div293pc: number;
+    extratax: number;
+    super: number;
+  }
+
+  const [div293, setdiv293] = useState<State3>({
+    div293limit: 0,
+    div293cap: 0,
+    div293pc: 0,
+    extratax: 0,
+    super: 0,
+  });
+
+  interface State4 {
+    litodata0min: number;
+    litodata0max: number;
+    litodata0lito: number;
+    litodata0pc: number;
+    litodata1min: number;
+    litodata1max: number;
+    litodata1lito: number;
+    litodata1pc: number;
+    litodata2min: number;
+    litodata2max: number;
+    litodata2lito: number;
+    litodata2pc: number;
+  }
+
+  const [litodata, setlitodata] = useState<State4>({
+    litodata0min: 0,
+    litodata0max: 0,
+    litodata0lito: 0,
+    litodata0pc: 0,
+    litodata1min: 0,
+    litodata1max: 0,
+    litodata1lito: 0,
+    litodata1pc: 0,
+    litodata2min: 0,
+    litodata2max: 0,
+    litodata2lito: 0,
+    litodata2pc: 0,
+  });
+
+  interface State5 {
+    lmitodata0min: number;
+    lmitodata0max: number;
+    lmitodata0lito: number;
+    lmitodata0pc: number;
+    lmitodata1min: number;
+    lmitodata1max: number;
+    lmitodata1lito: number;
+    lmitodata1pc: number;
+    lmitodata2min: number;
+    lmitodata2max: number;
+    lmitodata2lito: number;
+    lmitodata2pc: number;
+    lmitodata3min: number;
+    lmitodata3max: number;
+    lmitodata3lito: number;
+    lmitodata3pc: number;
+  }
+
+  const [lmitodata, setlmitodata] = useState<State5>({
+    lmitodata0min: 0,
+    lmitodata0max: 0,
+    lmitodata0lito: 0,
+    lmitodata0pc: 0,
+    lmitodata1min: 0,
+    lmitodata1max: 0,
+    lmitodata1lito: 0,
+    lmitodata1pc: 0,
+    lmitodata2min: 0,
+    lmitodata2max: 0,
+    lmitodata2lito: 0,
+    lmitodata2pc: 0,
+    lmitodata3min: 0,
+    lmitodata3max: 0,
+    lmitodata3lito: 0,
+    lmitodata3pc: 0,
+  });
+
+  interface State6 {
+    medi0min: number;
+    medi0max: number;
+    medi0rata: number;
+    medi1min: number;
+    medi1max: number;
+    medi1rata: number;
+    medi2min: number;
+    medi2max: number;
+    medi2rata: number;
+  }
+
+  const [medidata, setmedidata] = useState<State6>({
+    medi0min: 0,
+    medi0max: 0,
+    medi0rata: 0,
+    medi1min: 0,
+    medi1max: 0,
+    medi1rata: 0,
+    medi2min: 0,
+    medi2max: 0,
+    medi2rata: 0,
+  });
+
   useEffect(() => {
-    axios.get("https://incomecheck.herokuapp.com/data").then((res) => {
+    axios.get("http://localhost:8080/data").then((res) => {
       let data = res.data;
       setData(data);
-
+      console.log(data);
       setTaxbrackets({
         ...taxbrackets,
-        range0min: data[0].min,
-        range0max: data[0].max,
-        range0rat: data[0].rat,
-        range0ext: data[0].ext,
-        range1min: data[1].min,
-        range1max: data[1].max,
-        range1rat: data[1].rat,
-        range1ext: data[1].ext,
-        range2min: data[2].min,
-        range2max: data[2].max,
-        range2rat: data[2].rat,
-        range2ext: data[2].ext,
-        range3min: data[3].min,
-        range3max: data[3].max,
-        range3rat: data[3].rat,
-        range3ext: data[3].ext,
-        range4min: data[4].min,
-        range4max: data[4].max,
-        range4rat: data[4].rat,
-        range4ext: data[4].ext,
+        range0min: data.TaxBrackets[0].min,
+        range0max: data.TaxBrackets[0].max,
+        range0rat: data.TaxBrackets[0].rat,
+        range0ext: data.TaxBrackets[0].ext,
+        range1min: data.TaxBrackets[1].min,
+        range1max: data.TaxBrackets[1].max,
+        range1rat: data.TaxBrackets[1].rat,
+        range1ext: data.TaxBrackets[1].ext,
+        range2min: data.TaxBrackets[2].min,
+        range2max: data.TaxBrackets[2].max,
+        range2rat: data.TaxBrackets[2].rat,
+        range2ext: data.TaxBrackets[2].ext,
+        range3min: data.TaxBrackets[3].min,
+        range3max: data.TaxBrackets[3].max,
+        range3rat: data.TaxBrackets[3].rat,
+        range3ext: data.TaxBrackets[3].ext,
+        range4min: data.TaxBrackets[4].min,
+        range4max: data.TaxBrackets[4].max,
+        range4rat: data.TaxBrackets[4].rat,
+        range4ext: data.TaxBrackets[4].ext,
       });
-    });
-  }, []);
-
-  useEffect(() => {
-    axios.get("https://incomecheck.herokuapp.com/data2").then((res) => {
-      let data2 = res.data;
-      setData2(data2);
       sethdebt({
         ...hdebt,
-        range00min: data2[0].min,
-        range00max: data2[0].max,
-        range00rat: data2[0].rat,
-        range01min: data2[1].min,
-        range01max: data2[1].max,
-        range01rat: data2[1].rat,
-        range02min: data2[2].min,
-        range02max: data2[2].max,
-        range02rat: data2[2].rat,
-        range03min: data2[3].min,
-        range03max: data2[3].max,
-        range03rat: data2[3].rat,
-        range04min: data2[4].min,
-        range04max: data2[4].max,
-        range04rat: data2[4].rat,
-        range05min: data2[5].min,
-        range05max: data2[5].max,
-        range05rat: data2[5].rat,
-        range06min: data2[6].min,
-        range06max: data2[6].max,
-        range06rat: data2[6].rat,
-        range07min: data2[7].min,
-        range07max: data2[7].max,
-        range07rat: data2[7].rat,
-        range08min: data2[8].min,
-        range08max: data2[8].max,
-        range08rat: data2[8].rat,
-        range09min: data2[9].min,
-        range09max: data2[9].max,
-        range09rat: data2[9].rat,
-        range10min: data2[10].min,
-        range10max: data2[10].max,
-        range10rat: data2[10].rat,
-        range11min: data2[11].min,
-        range11max: data2[11].max,
-        range11rat: data2[11].rat,
-        range12min: data2[12].min,
-        range12max: data2[12].max,
-        range12rat: data2[12].rat,
-        range13min: data2[13].min,
-        range13max: data2[13].max,
-        range13rat: data2[13].rat,
-        range14min: data2[14].min,
-        range14max: data2[14].max,
-        range14rat: data2[14].rat,
-        range15min: data2[15].min,
-        range15max: data2[15].max,
-        range15rat: data2[15].rat,
-        range16min: data2[16].min,
-        range16max: data2[16].max,
-        range16rat: data2[16].rat,
-        range17min: data2[17].min,
-        range17max: data2[17].max,
-        range17rat: data2[17].rat,
-        range18min: data2[18].min,
-        range18max: data2[18].max,
-        range18rat: data2[18].rat,
+        range00min: data.HelpDebtBrackets[0].min,
+        range00max: data.HelpDebtBrackets[0].max,
+        range00rat: data.HelpDebtBrackets[0].rat,
+        range01min: data.HelpDebtBrackets[1].min,
+        range01max: data.HelpDebtBrackets[1].max,
+        range01rat: data.HelpDebtBrackets[1].rat,
+        range02min: data.HelpDebtBrackets[2].min,
+        range02max: data.HelpDebtBrackets[2].max,
+        range02rat: data.HelpDebtBrackets[2].rat,
+        range03min: data.HelpDebtBrackets[3].min,
+        range03max: data.HelpDebtBrackets[3].max,
+        range03rat: data.HelpDebtBrackets[3].rat,
+        range04min: data.HelpDebtBrackets[4].min,
+        range04max: data.HelpDebtBrackets[4].max,
+        range04rat: data.HelpDebtBrackets[4].rat,
+        range05min: data.HelpDebtBrackets[5].min,
+        range05max: data.HelpDebtBrackets[5].max,
+        range05rat: data.HelpDebtBrackets[5].rat,
+        range06min: data.HelpDebtBrackets[6].min,
+        range06max: data.HelpDebtBrackets[6].max,
+        range06rat: data.HelpDebtBrackets[6].rat,
+        range07min: data.HelpDebtBrackets[7].min,
+        range07max: data.HelpDebtBrackets[7].max,
+        range07rat: data.HelpDebtBrackets[7].rat,
+        range08min: data.HelpDebtBrackets[8].min,
+        range08max: data.HelpDebtBrackets[8].max,
+        range08rat: data.HelpDebtBrackets[8].rat,
+        range09min: data.HelpDebtBrackets[9].min,
+        range09max: data.HelpDebtBrackets[9].max,
+        range09rat: data.HelpDebtBrackets[9].rat,
+        range10min: data.HelpDebtBrackets[10].min,
+        range10max: data.HelpDebtBrackets[10].max,
+        range10rat: data.HelpDebtBrackets[10].rat,
+        range11min: data.HelpDebtBrackets[11].min,
+        range11max: data.HelpDebtBrackets[11].max,
+        range11rat: data.HelpDebtBrackets[11].rat,
+        range12min: data.HelpDebtBrackets[12].min,
+        range12max: data.HelpDebtBrackets[12].max,
+        range12rat: data.HelpDebtBrackets[12].rat,
+        range13min: data.HelpDebtBrackets[13].min,
+        range13max: data.HelpDebtBrackets[13].max,
+        range13rat: data.HelpDebtBrackets[13].rat,
+        range14min: data.HelpDebtBrackets[14].min,
+        range14max: data.HelpDebtBrackets[14].max,
+        range14rat: data.HelpDebtBrackets[14].rat,
+        range15min: data.HelpDebtBrackets[15].min,
+        range15max: data.HelpDebtBrackets[15].max,
+        range15rat: data.HelpDebtBrackets[15].rat,
+        range16min: data.HelpDebtBrackets[16].min,
+        range16max: data.HelpDebtBrackets[16].max,
+        range16rat: data.HelpDebtBrackets[16].rat,
+        range17min: data.HelpDebtBrackets[17].min,
+        range17max: data.HelpDebtBrackets[17].max,
+        range17rat: data.HelpDebtBrackets[17].rat,
+        range18min: data.HelpDebtBrackets[18].min,
+        range18max: data.HelpDebtBrackets[18].max,
+        range18rat: data.HelpDebtBrackets[18].rat,
+      });
+      setdiv293({
+        ...div293,
+        div293limit: data.Div293[0].figure, //250000
+        div293cap: data.Div293[1].figure, //27500
+        div293pc: data.Div293[2].figure, //0.15
+        extratax: data.Div293[3].figure, //4125
+        super: data.Div293[4].figure, //10.5%
       });
     });
   }, []);
@@ -287,6 +396,7 @@ const IncomeCheck = ({ style }: any) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
   });
+  const [taxird, settaxird] = useState<number>(0);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const [startDate, setStartDate] = useState(new Date());
   const [startDate1, setStartDate1] = useState(new Date("2022/04/01"));
@@ -330,10 +440,15 @@ const IncomeCheck = ({ style }: any) => {
   const [helpdebtpaymentSE, sethelpdebtpaymentSE] = useState<number>(0);
   const [totaltax, settotaltax] = useState<number>(0);
   const [division, setdivision] = useState<number>(0);
+  const [divisionird, setdivisionird] = useState<number>(0);
   const [paycycle, setpaycycle] = useState<number>(0);
   const [rounder, setrounder] = useState<number>(0);
   const [grossincome, setgrossincome] = useState<number>(0);
   const [npmfromgrossincome, setnpmfromgrossincome] = useState<number>(0);
+  const [litoird, setlitoird] = useState<number>(0);
+  const [lmitoird, setlmitoird] = useState<number>(0);
+  const [levyird, setlevyird] = useState<number>(0);
+  const [rounderird, setrounderird] = useState<number>(0);
   const refreshincomecheck = () => {
     setbase(0);
     settax(0);
@@ -366,6 +481,7 @@ const IncomeCheck = ({ style }: any) => {
   };
   const formcontrolbuttonStyle = {
     mt: 2,
+
     width: 175,
     background: "rgba(255, 255, 255, 0.5)",
   };
@@ -401,136 +517,205 @@ const IncomeCheck = ({ style }: any) => {
   }, [startDate1, endDate, ytd]);
 
   useEffect(() => {
-    if (grossincome * 1 < hdebt.range00max) {
+    if (Number(grossincome) < hdebt.range00max) {
       sethelpdebtpaymentSE(0);
     } else if (
-      grossincome * 1 >= hdebt.range01min &&
-      grossincome * 1 <= hdebt.range01max
+      Number(grossincome) >= hdebt.range01min &&
+      Number(grossincome) <= hdebt.range01max
     ) {
-      sethelpdebtpaymentSE(hdebt.range01rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range01rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range02min &&
-      grossincome * 1 <= hdebt.range02max
+      Number(grossincome) >= hdebt.range02min &&
+      Number(grossincome) <= hdebt.range02max
     ) {
-      sethelpdebtpaymentSE(hdebt.range02rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range02rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range03min &&
-      grossincome * 1 <= hdebt.range03max
+      Number(grossincome) >= hdebt.range03min &&
+      Number(grossincome) <= hdebt.range03max
     ) {
-      sethelpdebtpaymentSE(hdebt.range03rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range03rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range04min &&
-      grossincome * 1 <= hdebt.range04max
+      Number(grossincome) >= hdebt.range04min &&
+      Number(grossincome) <= hdebt.range04max
     ) {
-      sethelpdebtpaymentSE(hdebt.range04rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range04rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range05min &&
-      grossincome * 1 <= hdebt.range05max
+      Number(grossincome) >= hdebt.range05min &&
+      Number(grossincome) <= hdebt.range05max
     ) {
-      sethelpdebtpaymentSE(hdebt.range05rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range05rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range06min &&
-      grossincome * 1 <= hdebt.range06max
+      Number(grossincome) >= hdebt.range06min &&
+      Number(grossincome) <= hdebt.range06max
     ) {
-      sethelpdebtpaymentSE(hdebt.range06rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range06rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range07max &&
-      grossincome * 1 <= hdebt.range07max
+      Number(grossincome) >= hdebt.range07min &&
+      Number(grossincome) <= hdebt.range07max
     ) {
-      sethelpdebtpaymentSE(hdebt.range07rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range07rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range08min &&
-      grossincome * 1 <= hdebt.range08max
+      Number(grossincome) >= hdebt.range08min &&
+      Number(grossincome) <= hdebt.range08max
     ) {
-      sethelpdebtpaymentSE(hdebt.range08rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range08rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range09min &&
-      grossincome * 1 <= hdebt.range09max
+      Number(grossincome) >= hdebt.range09min &&
+      Number(grossincome) <= hdebt.range09max
     ) {
-      sethelpdebtpaymentSE(hdebt.range09rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range09rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range10min &&
-      grossincome * 1 <= hdebt.range10max
+      Number(grossincome) >= hdebt.range10min &&
+      Number(grossincome) <= hdebt.range10max
     ) {
-      sethelpdebtpaymentSE(hdebt.range10rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range10rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range11min &&
-      grossincome * 1 <= hdebt.range11max
+      Number(grossincome) >= hdebt.range11min &&
+      Number(grossincome) <= hdebt.range11max
     ) {
-      sethelpdebtpaymentSE(hdebt.range11rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range11rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range12min &&
-      grossincome * 1 <= hdebt.range12max
+      Number(grossincome) >= hdebt.range12min &&
+      Number(grossincome) <= hdebt.range12max
     ) {
-      sethelpdebtpaymentSE(hdebt.range12rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range12rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range13min &&
-      grossincome * 1 <= hdebt.range13max
+      Number(grossincome) >= hdebt.range13min &&
+      Number(grossincome) <= hdebt.range13max
     ) {
-      sethelpdebtpaymentSE(hdebt.range13rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range13rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range15min &&
-      grossincome * 1 <= hdebt.range14max
+      Number(grossincome) >= hdebt.range14min &&
+      Number(grossincome) <= hdebt.range14max
     ) {
-      sethelpdebtpaymentSE(hdebt.range14rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range14rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range15min &&
-      grossincome * 1 <= hdebt.range15max
+      Number(grossincome) >= hdebt.range15min &&
+      Number(grossincome) <= hdebt.range15max
     ) {
-      sethelpdebtpaymentSE(hdebt.range15rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range15rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range16min &&
-      grossincome * 1 <= hdebt.range16max
+      Number(grossincome) >= hdebt.range16min &&
+      Number(grossincome) <= hdebt.range16max
     ) {
-      sethelpdebtpaymentSE(hdebt.range16rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range16rat * Number(grossincome));
     } else if (
-      grossincome * 1 >= hdebt.range17min &&
-      grossincome * 1 <= hdebt.range17max
+      Number(grossincome) >= hdebt.range17min &&
+      Number(grossincome) <= hdebt.range17max
     ) {
-      sethelpdebtpaymentSE(hdebt.range17rat * grossincome);
-    } else if (grossincome * 1 >= hdebt.range18min) {
-      sethelpdebtpaymentSE(hdebt.range18rat * grossincome);
+      sethelpdebtpaymentSE(hdebt.range17rat * Number(grossincome));
+    } else if (Number(grossincome) >= hdebt.range18min) {
+      sethelpdebtpaymentSE(hdebt.range18rat * Number(grossincome));
     }
 
-    if (grossincome <= taxbrackets.range0max) {
-      setnpmfromgrossincome(grossincome / 12);
+    if (Number(grossincome) <= taxbrackets.range0max) {
+      settaxird(0);
     } else if (
-      taxbrackets.range1min < grossincome &&
-      grossincome <= taxbrackets.range1max
+      taxbrackets.range1min < Number(grossincome) &&
+      Number(grossincome) <= taxbrackets.range1max
     ) {
-      setnpmfromgrossincome(
-        (grossincome -
-          taxbrackets.range1rat * (grossincome - taxbrackets.range0max)) /
-          12
+      settaxird(
+        taxbrackets.range1rat * (Number(grossincome) - taxbrackets.range0max)
       );
     } else if (
-      taxbrackets.range2min < grossincome &&
-      grossincome <= taxbrackets.range2max
+      taxbrackets.range2min < Number(grossincome) &&
+      Number(grossincome) <= taxbrackets.range2max
     ) {
-      setnpmfromgrossincome(
-        (grossincome -
-          taxbrackets.range2ext +
-          taxbrackets.range2rat * (grossincome - taxbrackets.range1max)) /
-          12
+      settaxird(
+        taxbrackets.range2ext +
+          taxbrackets.range2rat * (Number(grossincome) - taxbrackets.range1max)
       );
     } else if (
-      taxbrackets.range3min < grossincome &&
-      grossincome <= taxbrackets.range3max
+      taxbrackets.range3min < Number(grossincome) &&
+      Number(grossincome) <= taxbrackets.range3max
     ) {
-      setnpmfromgrossincome(
-        (grossincome -
-          taxbrackets.range3ext +
-          taxbrackets.range3rat * (grossincome! - taxbrackets.range2max)) /
-          12
+      settaxird(
+        taxbrackets.range3ext +
+          taxbrackets.range3rat * (Number(grossincome)! - taxbrackets.range2max)
       );
-    } else if (grossincome > taxbrackets.range4min) {
-      setnpmfromgrossincome(
-        (grossincome -
-          taxbrackets.range4ext +
-          taxbrackets.range4rat * (grossincome - taxbrackets.range3max)) /
-          12
+    } else if (Number(grossincome) > taxbrackets.range4min) {
+      settaxird(
+        taxbrackets.range4ext +
+          taxbrackets.range4rat * (Number(grossincome) - taxbrackets.range3max)
       );
     }
+
+    if (Number(grossincome) >= div293.div293limit) {
+      if (Number(grossincome) - div293.div293limit <= div293.div293cap) {
+        setdivisionird(
+          (Number(grossincome) - div293.div293limit) * div293.div293pc
+        );
+      } else if (Number(grossincome) - div293.div293limit > div293.div293cap) {
+        setdivisionird(div293.extratax);
+      } else {
+        setdivisionird(0);
+      }
+    } else {
+      setdivisionird(0);
+    }
+
+    if (0 < Number(grossincome) && Number(grossincome) <= 37500) {
+      setlitoird(700);
+    } else if (37501 < Number(grossincome) && Number(grossincome) <= 45000) {
+      setlitoird(700 - 0.05 * (Number(grossincome) - 37500));
+    } else if (45001 < Number(grossincome) && Number(grossincome) <= 66667) {
+      setlitoird(325 - 0.015 * (Number(grossincome) - 45000));
+    } else if (66667 < Number(grossincome)) {
+      setlitoird(0);
+    } else if (Number(grossincome) === 0) {
+      setlitoird(0);
+    }
+
+    if (0 < Number(grossincome) && Number(grossincome) <= 37000) {
+      setlmitoird(675);
+    } else if (37001 < Number(grossincome) && Number(grossincome) <= 48000) {
+      setlmitoird(
+        675 + 0.075 * (Number(grossincome) - 37000) > 1500
+          ? 1500
+          : 675 + 0.075 * (Number(grossincome) - 37000)
+      );
+    } else if (48001 < Number(grossincome) && Number(grossincome) <= 90000) {
+      setlmitoird(1500);
+    } else if (90001 < Number(grossincome) && Number(grossincome) <= 126000) {
+      setlmitoird(1500 - 0.03 * (Number(grossincome) - 90000));
+    } else if (126001 < Number(grossincome)) {
+      setlmitoird(0);
+    } else if (Number(grossincome) === 0) {
+      setlmitoird(0);
+    }
+
+    if (Number(grossincome) <= 23226) {
+      setlevyird(0);
+    } else if (23227 < Number(grossincome) && Number(grossincome) <= 29032) {
+      setlevyird(0.1 * (Number(grossincome) - 23226));
+    } else if (Number(grossincome) > 29032) {
+      setlevyird(0.02 * Number(grossincome));
+    }
+
+    if (Number(grossincome) > 40000 && Number(grossincome) < 55000) {
+      setrounderird(50);
+    }
+
+    if (Number(grossincome) > 100000 && Number(grossincome) <= 150000) {
+      setrounderird(50);
+    }
+    if (Number(grossincome) > 20000 && Number(grossincome) <= 40000) {
+      setrounderird(-72);
+    }
+
+    if (Number(grossincome) > 40000 && Number(grossincome) <= 100000) {
+      setrounderird(36);
+    }
+    if (Number(grossincome) > 150000) {
+      setrounderird(50);
+    }
+    console.log(taxbrackets);
+    console.log("tax:" + taxird);
+    console.log("lito" + litoird);
+    console.log("lmito:" + lmitoird);
+    console.log("levy:" + levyird);
+    console.log("division:" + divisionird);
+    console.log(helpdebtpaymentSE);
   }, [grossincome]);
 
   useEffect(() => {
@@ -1088,8 +1273,20 @@ const IncomeCheck = ({ style }: any) => {
                       >
                         $
                         {(
-                          npmfromgrossincome -
-                          (helpdebtselfemp ? helpdebtpaymentSE : 0) / 12
+                          (Number(grossincome) -
+                            (taxird - litoird - lmitoird <= 0
+                              ? levyird
+                              : taxird -
+                                litoird -
+                                lmitoird +
+                                levyird +
+                                divisionird) -
+                            (taxird - litoird - lmitoird <= 0
+                              ? taxird
+                              : lmitoird + litoird) -
+                            rounderird -
+                            (helpdebtselfemp ? helpdebtpaymentSE : 0)) /
+                          12
                         ).toFixed(2)}
                       </p>
                     </div>
@@ -1098,7 +1295,7 @@ const IncomeCheck = ({ style }: any) => {
               </div>
 
               <div className="income2">
-                <h2>INCOME BASED M/FN/W PAY</h2>
+                <h2>Income Based On Monthly/FN/Weekly Pay</h2>
                 <div
                   style={{
                     display: "flex",
